@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><head><title>Windows 2000 Internals - Overview</title></head>
+
+<body bgcolor="#ffffff" background="background.gif" leftmargin="0" topmargin="0"
+      link="#00A5E7" vlink="#00A5E7" alink="#42C629">
+
+<a name="top_of_page"></a>
+
+<table border="0" cellpadding="0" cellspacing="0">
+
+<tr align="left" valign="top">
+    <td width="70"><img width="70" height="1" border="0" src="space70.gif"></td>
+    <td width="580"colspan="2"><img width="580" height="134" border="0" src="title.gif"></td>
+    <td width="240"></td>
+</tr>
+
+<tr align="left" valign="top">
+    <td width="70"></td>
+    <td width="240"><a href="index.html" title="Return to Homepage"><img width="240" height="170" border="0" src="logo.gif"></a></td>
+    <td width="340" nowrap="nowrap">
+        <a href="index.html"       >&gt;&gt; Homepage</a><br>
+        <a href="audience.html"    >&gt;&gt; Audience</a><br>
+        <a href="topics.html"      >&gt;&gt; Topics</a><br>
+        <font color="#ffad00"      >&gt;&gt; Overview</font><br>
+        <a href="cd.html"          >&gt;&gt; CD Contents</a><br>
+        <a href="bibliography.html">&gt;&gt; Bibliography</a></td>
+    <td width="240"></td>
+</tr>
+
+<tr align="left" valign="top">
+    <td width="70"></td>
+    <td width="820" colspan="3">
+
+<p><b>Chapter One</b> starts off with a guided tour through setup and
+use of the Windows 2000 Kernel Debugger, because this is one of the most
+helpful tools for system exploration. Other highlights are the official
+Windows 2000 debugging interfaces in the form of the psapi.dll,
+imagehlp.dll, and dbghelp.dll components. The chapter closes down with
+detailed descriptions of the layouts of Microsoft CodeView and Program
+Database (PDB) files, complemented by a sample symbol file parser DLL
+and an accompanying client application.</p> 
+
+<p><b>Chapter Two</b> introduces the Windows 2000 Native API,
+discussing the main system service dispatcher, the various API function
+groups exported by ntdll.dll and ntoskrnl.exe, and the data types most
+frequently used by these components.</p> 
+
+<p><b>Chapter Three</b> is a short and easy introduction to basic
+kernel-mode driver development. It is by no means intended as a tutorial
+for heavy-duty hardware driver developers. It simply points out all
+essential things required to understand the sample code following in
+subsequent chapters, including loading and unloading driver modules at
+runtime via the Service Control Manger interface. Probably the most
+interesting highlight is the description of the customizable driver
+wizard included with full source code on the companion CD.</p> 
+
+<p><b>Chapter Four</b> is certainly the most challenging chapter for
+readers suffering of hardware phobia, because it starts with a detailed
+description of the Intel Pentium CPU features used by the Windows 2000
+memory manager. Anyone who survives this section is rewarded by
+extensive sample code of a memory spy device that supports the
+visualization of prohibited memory regions and internal memory manager
+data structures. Also included is a Windows 2000 memory map that
+outlines how the system makes use of the vast 4-GB address space offered
+by the Pentium CPU family.</p> 
+
+<p><b>Chapter Five</b> explains in detail how you can hook Native API
+functions, mainly focusing on call parameter monitoring and
+file/registry tracking. This chapter makes heavy use of inline assembler
+code and CPU stack twirling.</p> 
+
+<p><b>Chapter Six</b> is a weird one, as it proposes a general-purpose
+solution for something that is commonly considered impossible in the
+Windows 2000 programming paradigm: Calling kernel-mode code from
+user-mode applications. The sample code in this chapter builds a bridge
+from the Win32 subsystem to the main kernel interfaces inside
+ntoskrnl.exe, hal.dll, and other core components. Just as if this
+weren't wacky enough, I'm also showing how you can call about any kernel
+function as long as its entry point is provided in the Windows 2000
+symbol files. Don't read this chapter if you are afraid of mortal
+sins!</p> 
+
+<p><b>Chapter Seven</b> delves deeply into the mysterious waters of the
+Windows 2000 object manager. The internal structure of kernel objects is
+one of the best-kept secrets, as Microsoft doesn't give you more
+information about an object than an opaque void* pointer. This chapter
+unveils what this pointer really points to, and how object structures
+and handles are maintained and managed by the system. As a special
+feature, the layout of process and thread objects is discussed in great
+detail. The great finale of the book is a sample application that
+displays the hierarchical arrangement of kernel objects by tracing down
+the relations of various undocumented object structures.</p> 
+
+<p><b>Appendix A</b> is related to Chapter One and contains all
+commands and command options of the Windows 2000 Kernel Debugger.</p> 
+
+<p><b>Appendix B</b> is related to Chapter Two and summarizes several
+API functions exported by the Windows 2000 kernel modules.</p> 
+
+<p><b>Appendix C</b> provides an extensive collection of Windows 2000
+constants and data types in alphabetical order. This reference list
+documents several undocumented kernel structures introduced and used
+throughout the book.</p> 
+
+<p><a href="#top_of_page">&gt;&gt; Back to top of page</a><br>&nbsp;</p>
+
+    </td></tr>
+
+<tr align="left" valign="middle">
+    <td width="70"></td>
+    <td width="580" height="40" colspan="2" bgcolor="#00A5E7">&nbsp;&nbsp;
+
+<a href="mailto:sbs@orgon.com" title="Send email to Sven B. Schreiber">
+<font color="#ffffff">December 17th, 2000 // Sven B. Schreiber</font></a></td>
+
+    <td width="240"></td>
+
+</tr>
+
+</table>
+
+</body>
+</html>

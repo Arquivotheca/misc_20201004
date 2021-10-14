@@ -1,0 +1,4 @@
+[autorun]
+icon=win2000.ico
+label=Windows 2000 Undocumented Secrets
+shellexecute=index.html

@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><head><title>Windows 2000 Internals - CD Contents</title></head>
+
+<body bgcolor="#ffffff" background="background.gif" leftmargin="0" topmargin="0"
+      link="#00A5E7" vlink="#00A5E7" alink="#42C629">
+
+<a name="top_of_page"></a>
+
+<table border="0" cellpadding="0" cellspacing="0">
+
+<tr align="left" valign="top">
+    <td width="70"><img width="70" height="1" border="0" src="space70.gif"></td>
+    <td width="580"colspan="2"><img width="580" height="134" border="0" src="title.gif"></td>
+    <td width="240"></td>
+</tr>
+
+<tr align="left" valign="top">
+    <td width="70"></td>
+    <td width="240"><a href="index.html" title="Return to Homepage"><img width="240" height="170" border="0" src="logo.gif"></a></td>
+    <td width="340" nowrap="nowrap">
+        <a href="index.html"       >&gt;&gt; Homepage</a><br>
+        <a href="audience.html"    >&gt;&gt; Audience</a><br>
+        <a href="topics.html"      >&gt;&gt; Topics</a><br>
+        <a href="overview.html"    >&gt;&gt; Overview</a><br>
+        <font color="#ffad00"      >&gt;&gt; CD Contents</font><br>
+        <a href="bibliography.html">&gt;&gt; Bibliography</a></td>
+    <td width="240"></td>
+</tr>
+
+<tr align="left" valign="top">
+    <td width="70"></td>
+    <td width="820" colspan="3">
+
+<p>The CD contains all sample applications, libraries, and drivers
+presented or discussed in the book. All components are available on the
+CD as Visual C/C++ 6.0 projects, as well as in <a href="bin\">ready-to-run
+form in a common directory.</a> Thus, the readers can choose to copy the
+projects onto the hard disk if they wish to rebuild or modify the
+samples, or to run the readily compiled code directly from the CD. The
+following programs are found on the CD (in alphabetical order):</p> 
+
+<p><b>w2k_call.dll:</b> This Win32 library hosts the kernel call
+interface introduced in chapter 6 of the book. It interfaces to the spy
+device driver w2k_spy.sys and the symbol file cruncher w2k_img.dll,
+providing an easy-to-use application interface that allows user-mode
+code to access almost any internal function or variables buried inside
+the kernel-mode modules. If the system's symbol files are installed,
+this DLL supports symbolic access to internal kernel functions and data
+structures that are not even available to kernel-mode drivers.</p> 
+
+<p><b>w2k_cv.exe:</b> A console application demonstrating how the
+CodeView information inside Microsoft symbol files can be extracted.</p>
+
+<p><b>w2k_dbg.dll:</b> A Win32 library built on Microsoft's
+imagehlp.dll and psapi.dll, demonstrating the usage of the "official"
+Windows 2000 debugging interfaces. This DLL enumerates processes,
+modules, drivers, and symbol file contents.</p> 
+
+<p><b>w2k_dump.exe:</b> A general-purpose hex dump utility for files.
+If the input file is a Program Database (PDB) symbol or debugging info
+file, the program can optionally disassemble all PDB data streams
+comprised by the file.</p> 
+
+<p><b>w2k_hook.exe:</b> A console application demonstrating the usage
+of the Native API hook facility built into the spy device driver
+w2k_spy.sys. It allows online monitoring of file and registry operations
+originating from the user processes currently running in the system.</p>
+
+<p><b>w2k_img.dll:</b> A Win32 library that is used throughout the book
+to crunch Windows 2000/NT .dbg and .pdb symbol files. As a special
+feature, this DLL can decompile the proprietary Microsoft Program
+Database (PDB) file format, which has remained opaque until now. This
+DLL runs on all Windows platforms, including Windows 9x.</p> 
+
+<p><b>w2k_kill.sys:</b> A tiny Windows 2000/NT kernel-mode driver that
+causes a benign CPU exception by performing a NULL pointer read at
+startup. This driver is used in the book to force a controlled "Blue
+Screen Of Death" in order to generate a system memory dump for debugging
+purposes.</p> 
+
+<p><b>w2k_lib.dll:</b> A powerful Win32 library that is used as a
+general-purpose runtime DLL for several sample projects in the book. It
+features memory, registry, object pool, and linked-list management,
+CRC32 computation, pseudo-random number generation, operating system and
+file version checking, and much more. The extensive w2k_lib.dll source
+code is a repository of general-purpose code I have written for myself
+in the past few years, and it is intended to make the life of Win32
+programmers much easier.</p> 
+
+<p><b>w2k_load.exe:</b> A general-purpose kernel-mode device driver
+loader/unloader. As a special feature, this loader extracts version
+information from the driver's resource section within the executable
+file and uses it to automatically set the display name property of a
+newly loaded driver.</p> 
+
+<p><b>w2k_mem.exe:</b> A versatile memory viewer displaying hex dumps
+of live memory in a console window. It is built on the spy device driver
+w2k_spy.sys, and therefore can display the contents of internal kernel
+memory regions that are usually inaccessible to user-mode
+applications.</p> 
+
+<p><b>w2k_obj.exe:</b> A console application that displays the Windows
+2000/NT object hierarchy by accessing undocumented kernel data
+structures and functions. This application demonstrates how user-mode
+applications can interact directly with kernel-mode objects with the
+help of the library w2k_img.dll.</p> 
+
+<p><b>w2k_spy.sys:</b> A versatile Windows 2000/NT kernel-mode driver,
+used in several chapters to gain information about the operating system
+that is not available to user-mode applications. This driver provides
+several device I/O control functions to read system memory, hook Native
+API functions, and call internal kernel functions from user-mode.</p> 
+
+<p><b>w2k_svc.exe:</b> A simple console-oriented Windows 2000/NT
+service and driver browser, built on the Service Control Manager support
+functions provided by the runtime library module w2k_lib.dll.</p> 
+
+<p><b>w2k_sym.exe:</b> A console application demonstrating the usage of
+the API functions exported by the debugging support library w2k_dbg.dll.
+Besides browsing symbols from the Windows 2000/NT symbol files, this
+utility also lists processes, process modules, and running kernel-mode
+drivers.</p> 
+
+<p><b>w2k_sym2.exe:</b> An alternative symbol browser with a different
+set of command options, built on the w2k_img.dll library to demonstrate
+the usage of its powerful API functions. This console application runs
+on all Windows platforms, including Windows 9x.</p> 
+
+<p><b>w2k_wiz.exe:</b> A customizable C project wizard, specifically
+tailored to generate source code frameworks for kernel-mode drivers. The
+output files are designed for Microsoft Visual C/C++ 6.0.</p> 
+
+<p>In addition to my own sample code, the CD contains debugging tools
+(not including source code) contributed by two fellow developers:</p> 
+
+<p><a href="http://redirect.to/MFVDasm" title="Visit the MFVDasm homepage">
+<b>The Multi-Format Visual Disassembler (MFVDasm)</b></a> is written by
+<a href="mailto:MFVDasm@redirect.to" title="Send email to Jean-Louis Seign&eacute;">
+Jean-Louis Seign&eacute;</a>, who is in the Windows software development business
+since 1990. Actually, MFVDasm is much more than just a disassembler - it
+is a Portable Executable (PE) file cruncher, disassembler, hex dump
+utility, and ASM code browser in one. The \tools\MFVDasm directory on
+the CD contains a fully functional timed demo version, protected with
+the Softlocx software produced by BitArts. An unlimited version can be
+obtained by paying US$ 100.00 to Jean-Louis via credit card.</p> 
+
+<p><a href="http://www.magma.ca/~wjr/" title="Visit the PEview homepage">
+<b>The PE and COFF File Viewer (PEview)</a></b> is contributed by
+<a href="mailto:wjr@magma.ca" title="Send email to Wayne J. Radburn">
+Wayne J. Radburn</a> and is given away royalty-free as a special bonus
+for the readers of this book. PEview is certainly the most versatile PE
+file browser I'm aware of, and therefore is an essential tool for
+operating system spelunkers. It provides a quick and easy way to view
+the structure and content of 32-bit Portable Executable (PE) and
+Component Object File Format (COFF) files, and supports the viewing of
+.exe, .dll, .obj, .lib, .dbg, and other file types.</p> 
+
+<p>The code samples on the CD are not just barebones applications that
+demonstrate some isolated topics discussed in the book, but full-fledged
+debugging applications and libraries that are designed to accompany the
+work of a developer a long time after having finished reading the
+book.</p> 
+
+<p><a href="#top_of_page">&gt;&gt; Back to top of page</a><br>&nbsp;</p>
+
+    </td></tr>
+
+<tr align="left" valign="middle">
+    <td width="70"></td>
+    <td width="580" height="40" colspan="2" bgcolor="#00A5E7">&nbsp;&nbsp;
+
+<a href="mailto:sbs@orgon.com" title="Send email to Sven B. Schreiber">
+<font color="#ffffff">December 17th, 2000 // Sven B. Schreiber</font></a></td>
+
+    <td width="240"></td>
+
+</tr>
+
+</table>
+
+</body>
+</html>

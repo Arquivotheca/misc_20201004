@@ -1,0 +1,47 @@
+
+Multi-Format Visual Disassembler
+MFVDasm V0.4b Copyright © 1996-2000 Jean-Louis Seigne
+All rights reserved
+
+LICENSE AGREEMENT 
+
+This license applies to the evaluation version of MFVDasm. You should
+carefully read the following terms and conditions before using this
+software. Unless you have a different license agreement signed by the
+author Jean-Louis Seigne, your use of this software indicates your
+acceptance of this license agreement and warranty. 
+
+1. EVALUATION AND REGISTRATION 
+
+This is not free software. Subject to the terms below, you are hereby
+licensed to use this software for a total of 15 sessions. After having
+run the software 15 times, it will cease to start up, and a registration
+fee of US$ 100 is required to unlock it, payable via credit dard. When
+payment is received you will receive instructions about how to unlock
+the software for further use. 
+
+2. DISTRIBUTION
+
+Provided that you verify that you are distributing the evaluation
+version of MFVDasm, you are hereby licensed to make as many copies of
+the evaluation version of this software and documentation as you wish;
+give exact copies of the original evaluation version to anyone; and
+distribute the evaluation version of the software and documentation in
+its unmodified form via electronic means. There is no charge for any of
+the above. You are specifically prohibited from charging, or requesting
+donations, for any such copies, however made; and from distributing the
+software and/or documentation with other products (commercial or
+otherwise) without prior written permission. 
+
+3. DISCLAIMER OF WARRANTY 
+
+This software is provided "as is" and any express or implied warranties,
+including, but not limited to, the implied warranties of merchantability
+and fitness for a particular purpose are disclaimed. In no event shall
+the author Jean-Louis Seigne be liable for any direct, indirect,
+incidental, special, exemplary, or consequential damages (including, but
+not limited to, procurement of substitute goods or services; loss of
+use, data, or profits; or business interruption) however caused and on
+any theory of liability, whether in contract, strict liability, or tort
+(including negligence or otherwise) arising in any way out of the use of
+this software, even if advised of the possibility of such damage. 

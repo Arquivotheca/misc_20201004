@@ -1,0 +1,201 @@
+
+// %n.c
+// %m-%d-%y %a
+// Copyright © %y %c
+
+#define  _%N_SYS_
+#include <ddk\ntddk.h>
+#include "%n.h"
+
+// =================================================================
+// DISCLAIMER
+// =================================================================
+
+/*
+
+This software is provided "as is" and any express or implied
+warranties, including, but not limited to, the implied warranties of
+merchantability and fitness for a particular purpose are disclaimed.
+In no event shall the author %a be liable for any
+direct, indirect, incidental, special, exemplary, or consequential
+damages (including, but not limited to, procurement of substitute
+goods or services; loss of use, data, or profits; or business
+interruption) however caused and on any theory of liability,
+whether in contract, strict liability, or tort (including negligence
+or otherwise) arising in any way out of the use of this software,
+even if advised of the possibility of such damage.
+
+*/
+
+// =================================================================
+// REVISION HISTORY
+// =================================================================
+
+/*
+
+%m-%d-%y V1.00 Original version.
+
+*/
+
+// =================================================================
+// GLOBAL DATA
+// =================================================================
+
+PRESET_UNICODE_STRING (usDeviceName,       CSTRING (DRV_DEVICE));
+PRESET_UNICODE_STRING (usSymbolicLinkName, CSTRING (DRV_LINK  ));
+
+PDEVICE_OBJECT  gpDeviceObject  = NULL;
+PDEVICE_CONTEXT gpDeviceContext = NULL;
+
+// =================================================================
+// DISCARDABLE FUNCTIONS
+// =================================================================
+
+NTSTATUS DriverInitialize (PDRIVER_OBJECT  pDriverObject,
+                           PUNICODE_STRING pusRegistryPath);
+
+NTSTATUS DriverEntry      (PDRIVER_OBJECT  pDriverObject,
+                           PUNICODE_STRING pusRegistryPath);
+
+// -----------------------------------------------------------------
+
+#ifdef ALLOC_PRAGMA
+
+#pragma alloc_text (INIT, DriverInitialize)
+#pragma alloc_text (INIT, DriverEntry)
+
+#endif
+
+// =================================================================
+// DEVICE REQUEST HANDLER
+// =================================================================
+
+NTSTATUS DeviceDispatcher (PDEVICE_CONTEXT pDeviceContext,
+                           PIRP            pIrp)
+    {
+    PIO_STACK_LOCATION pisl;
+    DWORD              dInfo = 0;
+    NTSTATUS           ns    = STATUS_NOT_IMPLEMENTED;
+
+    pisl = IoGetCurrentIrpStackLocation (pIrp);
+
+    switch (pisl->MajorFunction)
+        {
+        case IRP_MJ_CREATE:
+        case IRP_MJ_CLEANUP:
+        case IRP_MJ_CLOSE:
+            {
+            ns = STATUS_SUCCESS;
+            break;
+            }
+        }
+    pIrp->IoStatus.Status      = ns;
+    pIrp->IoStatus.Information = dInfo;
+
+    IoCompleteRequest (pIrp, IO_NO_INCREMENT);
+    return ns;
+    }
+
+// =================================================================
+// DRIVER REQUEST HANDLER
+// =================================================================
+
+NTSTATUS DriverDispatcher (PDEVICE_OBJECT pDeviceObject,
+                           PIRP           pIrp)
+    {
+    return (pDeviceObject == gpDeviceObject
+            ? DeviceDispatcher (gpDeviceContext, pIrp)
+            : STATUS_INVALID_PARAMETER_1);
+    }
+
+// -----------------------------------------------------------------
+
+void DriverUnload (PDRIVER_OBJECT pDriverObject)
+    {
+    IoDeleteSymbolicLink (&usSymbolicLinkName);
+    IoDeleteDevice       (gpDeviceObject);
+    return;
+    }
+
+// =================================================================
+// DRIVER INITIALIZATION
+// =================================================================
+
+NTSTATUS DriverInitialize (PDRIVER_OBJECT  pDriverObject,
+                           PUNICODE_STRING pusRegistryPath)
+    {
+    PDEVICE_OBJECT pDeviceObject = NULL;
+    NTSTATUS       ns = STATUS_DEVICE_CONFIGURATION_ERROR;
+
+    if ((ns = IoCreateDevice (pDriverObject, DEVICE_CONTEXT_,
+                              &usDeviceName, FILE_DEVICE_CUSTOM,
+                              0, FALSE, &pDeviceObject))
+        == STATUS_SUCCESS)
+        {
+        if ((ns = IoCreateSymbolicLink (&usSymbolicLinkName,
+                                        &usDeviceName))
+            == STATUS_SUCCESS)
+            {
+            gpDeviceObject  = pDeviceObject;
+            gpDeviceContext = pDeviceObject->DeviceExtension;
+
+            gpDeviceContext->pDriverObject = pDriverObject;
+            gpDeviceContext->pDeviceObject = pDeviceObject;
+            }
+        else
+            {
+            IoDeleteDevice (pDeviceObject);
+            }
+        }
+    return ns;
+    }
+
+// -----------------------------------------------------------------
+
+NTSTATUS DriverEntry (PDRIVER_OBJECT  pDriverObject,
+                      PUNICODE_STRING pusRegistryPath)
+    {
+    PDRIVER_DISPATCH *ppdd;
+    NTSTATUS          ns = STATUS_DEVICE_CONFIGURATION_ERROR;
+
+    if ((ns = DriverInitialize (pDriverObject, pusRegistryPath))
+        == STATUS_SUCCESS)
+        {
+        ppdd = pDriverObject->MajorFunction;
+
+        ppdd [IRP_MJ_CREATE                  ] =
+        ppdd [IRP_MJ_CREATE_NAMED_PIPE       ] =
+        ppdd [IRP_MJ_CLOSE                   ] =
+        ppdd [IRP_MJ_READ                    ] =
+        ppdd [IRP_MJ_WRITE                   ] =
+        ppdd [IRP_MJ_QUERY_INFORMATION       ] =
+        ppdd [IRP_MJ_SET_INFORMATION         ] =
+        ppdd [IRP_MJ_QUERY_EA                ] =
+        ppdd [IRP_MJ_SET_EA                  ] =
+        ppdd [IRP_MJ_FLUSH_BUFFERS           ] =
+        ppdd [IRP_MJ_QUERY_VOLUME_INFORMATION] =
+        ppdd [IRP_MJ_SET_VOLUME_INFORMATION  ] =
+        ppdd [IRP_MJ_DIRECTORY_CONTROL       ] =
+        ppdd [IRP_MJ_FILE_SYSTEM_CONTROL     ] =
+        ppdd [IRP_MJ_DEVICE_CONTROL          ] =
+        ppdd [IRP_MJ_INTERNAL_DEVICE_CONTROL ] =
+        ppdd [IRP_MJ_SHUTDOWN                ] =
+        ppdd [IRP_MJ_LOCK_CONTROL            ] =
+        ppdd [IRP_MJ_CLEANUP                 ] =
+        ppdd [IRP_MJ_CREATE_MAILSLOT         ] =
+        ppdd [IRP_MJ_QUERY_SECURITY          ] =
+        ppdd [IRP_MJ_SET_SECURITY            ] =
+        ppdd [IRP_MJ_POWER                   ] =
+        ppdd [IRP_MJ_SYSTEM_CONTROL          ] =
+        ppdd [IRP_MJ_DEVICE_CHANGE           ] =
+        ppdd [IRP_MJ_QUERY_QUOTA             ] =
+        ppdd [IRP_MJ_SET_QUOTA               ] =
+        ppdd [IRP_MJ_PNP                     ] = DriverDispatcher;
+        pDriverObject->DriverUnload            = DriverUnload;
+        }
+    return ns;
+    }
+
+// =================================================================
+// END OF PROGRAM
+// =================================================================
